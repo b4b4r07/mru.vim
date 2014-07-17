@@ -864,13 +864,18 @@ function! s:MRU_Open_Window(...)
     " endif
     nnoremap <buffer> <silent> r :call <SID>SearchStrings('r')<CR>
     nnoremap <buffer> <silent> s :call <SID>SearchStrings('s')<CR>
-    nnoremap <buffer> <silent> i :call <SID>SearchStrings('s')<CR>
+" ==== Modify start by b4b4r07 {{{
+    nnoremap <buffer> <silent> i :call <SID>SearchStrings('i')<CR>
+" ==== Modify end }}}
     nnoremap <buffer> <silent> n :silent! exec "normal! n"<CR>:noh<CR>
     nnoremap <buffer> <silent> N :silent! exec "normal! N"<CR>:noh<CR>
     nnoremap <buffer> <silent> R :call <SID>Remove()<CR>
     nnoremap <buffer> <silent> K :call <SID>Remove('force')<CR>
     nnoremap <buffer> <silent> S :setlocal modifiable<CR>:sort<CR>:setlocal nomodifiable<CR>
     nnoremap <buffer> <silent> U :MRU<CR>
+" ==== Modify start by b4b4r07 {{{
+    nnoremap <buffer> <silent> <Space>j :quit<CR>
+" ==== Modify end }}}
 " ==== Modify end }}}
 
     " Restore the previous cpoptions settings
