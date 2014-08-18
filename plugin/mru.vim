@@ -910,8 +910,22 @@ function! s:MRU_Open_Window(...)
     " Delete the empty line at the end of the buffer
     silent! $delete _
     let glist = getline(1, '$')
+		let max = 0
+		let max_h = 0
     for idx in range(0, len(glist)-1)
-      let glist[idx] = fnamemodify(glist[idx], ':t') . '| ' . glist[idx]
+		if strlen(fnamemodify(glist[idx], ':t')) > max
+			let max = strlen(fnamemodify(glist[idx], ':t'))
+		endif
+		if strlen(substitute(fnamemodify(glist[idx], ':p:h'), '^.*\/', '', '')) > max_h
+			let max_h = strlen(substitute(fnamemodify(glist[idx], ':p:h'), '^.*\/', '', ''))
+		endif
+	endfor
+    for idx in range(0, len(glist)-1)
+      "let glist[idx] = fnamemodify(glist[idx], ':t') . '| ' . glist[idx]
+      "let glist[idx] = printf("%-15s | %s" ,fnamemodify(glist[idx], ':t'), glist[idx])
+      "let glist[idx] = printf("%-" . max . "s | %s" ,fnamemodify(glist[idx], ':t'), glist[idx])
+      let glist[idx] = printf("%-" . max .  "s | %-" . max_h . "s | %s" ,
+				  \ fnamemodify(glist[idx], ':t'), substitute(fnamemodify(glist[idx], ':p:h'), '^.*\/', '', ''), glist[idx])
     endfor
     silent! %delete _
     call setline(1, glist)
