@@ -974,11 +974,17 @@ endfunction
 " MRU_Cmd                               {{{1
 " Function to handle the MRU command
 "   pat - File name pattern passed to the MRU command
+let s:MRU_window_toggle = 0
 function! s:MRU_Cmd(pat)
     if a:pat == ''
-        " No arguments specified. Open the MRU window
-        call s:MRU_Open_Window()
-        return
+		if s:MRU_window_toggle == 0
+        	" No arguments specified. Open the MRU window
+        	call s:MRU_Open_Window()
+        	return
+		else
+			let s:MRU_window_toggle = 1
+			quit
+		endif
     endif
 
     " Load the latest MRU file
