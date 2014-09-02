@@ -941,7 +941,7 @@ function! s:MRU_Open_Window(...)
 		"let glist[idx] = fnamemodify(glist[idx], ':t') . '| ' . glist[idx]
 		"let glist[idx] = printf("%-15s | %s" ,fnamemodify(glist[idx], ':t'), glist[idx])
 		"let glist[idx] = printf("%-" . max . "s | %s" ,fnamemodify(glist[idx], ':t'), glist[idx])
-		let glist[idx] = printf(" %-" . max .  "s | %-" . max_h . "s | %s" ,
+		let glist[idx] = printf("%-" . max .  "s | %-" . max_h . "s | %s" ,
 					\ fnamemodify(glist[idx], ':t'), substitute(fnamemodify(glist[idx], ':p:h'), '^.*\/', '', ''), glist[idx])
 	endfor
 	silent! %delete _
@@ -951,7 +951,7 @@ function! s:MRU_Open_Window(...)
 	endif
 
 	let hlpattern = '"'.'^[^|]*'.'"'
-	exe 'syntax match MruFname display ' . hlpattern
+	"exe 'syntax match MruFname display ' . hlpattern
 	if exists('g:MRU_hi_Fname')
 		exe 'hi MruFname ' . g:MRU_hi_Fname
 	endif
